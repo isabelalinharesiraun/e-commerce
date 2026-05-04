@@ -44,3 +44,31 @@ inputBusca.addEventListener('input',(e)=>{
 
 //selectores adicionais
 
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const subtotalDisplay = document.getElementById('subtotal');
+    const selectfrete = document.getElementById('select-frete');
+    const formCheckout = document.getElementById('form-checkout');
+    const notaFiscalArea = document.getElementById('nota-fiscal');
+
+    let itensCarrinho = [];
+
+    function atulizacarrinho(){
+        listaCarrinho.innerHTML = "";
+        let soma = 0;
+
+        itensCarrinho.forEach((item,index)=>{
+            soma += item.preco;
+
+            const li = document.createElement('li');
+            li.innerHTML = `
+            ${item.nome} - R$ ${item.preco.toFixed(2)}
+            <button onclick="removerDoCarrinho(${index})>X</button>"
+            
+            `;
+            listaCarrinho.appendChild(li);
+
+        });
+
+        subtotalDisplay.textContent = soma.toFixed(2);
+    }
+
